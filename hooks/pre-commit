@@ -1,0 +1,8 @@
+cd diagrams
+docker build -t my-plantuml-image .
+for file in *.puml; do
+  docker run --rm -v "$(pwd):/app" my-plantuml-image -tsvg "$file"
+  echo "PlantUML render $file"
+done
+git add .
+cd -
